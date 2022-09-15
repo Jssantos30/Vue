@@ -2,6 +2,7 @@
   import { ref,computed } from "vue";
   import { getInnerRange } from "@vue/compiler-core";
   import axios from "axios"
+import { userService } from "@/services/user.service";
 
     export default{
       name: "GetsList",
@@ -11,12 +12,9 @@
           Gets: [],
         };
       },
-
       methods: {
       async getGets(){
-          let API_URL_Random = "https://random-data-api.com/api/v2/users";
-          const response = await axios.get(API_URL_Random)
-          this.Gets = response.data
+         this.Gets = await (await userService.users()).data;
         }
       },
       created (){

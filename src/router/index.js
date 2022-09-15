@@ -6,7 +6,7 @@ import Datos from '@/views/Datos.vue'
 
 const routes = [{path: '/', name: 'Home', component: Home},
                 {path: '/favoritos', name: 'Favoritos', component: Favoritos},
-                {path: '/datos', name: 'Datos', component: Datos}
+                {path: '/datos/:id', name: 'datos', component: Datos}
             ]
 
 const router = createRouter({
