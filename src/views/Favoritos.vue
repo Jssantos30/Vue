@@ -21,7 +21,12 @@ export default {
   methods:{
     exportar(){
       let csvContent = "data:text/csv;charset=utf-8,";
-
+      let header = [
+        'nombre',
+        'apellido',
+        'genero'
+      ].join(',');
+      csvContent += header + "\r\n";
       this.favoritos.forEach((favorito) => {
           let row = [
             favorito.first_name,
