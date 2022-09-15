@@ -4,6 +4,8 @@
     <ul>
       <li v-for="favorito in favoritos">{{ favorito.first_name }}</li>
     </ul>
+
+    <button @click="exportar">Exportar</button>
   </div>
 </template>
 
@@ -14,6 +16,22 @@ export default {
   created() {
     if (this.users.length === 0) {
       this.$router.push({ name: "Home" });
+    }
+  },
+  methods:{
+    exportar(){
+      let csvContent = "data:text/csv;charset=utf-8,";
+
+      this.favoritos.forEach((favorito) => {
+          let row = [
+            favorito.first_name,
+            favorito.last_name,
+            favorito.gender
+          ].join(',')
+          csvContent += row + "\r\n";
+      });
+      const encodedUri = encodeURI(csvContent);
+      window.open(encodedUri);
     }
   },
   computed: {
